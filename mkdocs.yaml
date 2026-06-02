@@ -1,0 +1,29 @@
+site_name: Neurological Disease Ontology
+site_description: A comprehensive ontology representing neurological diseases and related biomedical entities
+site_url: https://addiehl.github.io/neurological-disease-ontology/
+repo_url: https://github.com/addiehl/neurological-disease-ontology
+repo_name: neurological-disease-ontology
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+      accent: indigo
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Contributing: contributing.md
+  - Documentation: documentation.md
+
+markdown_extensions:
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - toc:
+      permalink: true
+  - tables
+
+plugins:
+  - search

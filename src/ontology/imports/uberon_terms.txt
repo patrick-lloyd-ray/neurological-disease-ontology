@@ -1,1 +1,16 @@
+UBERON:0000955 ## brain
+UBERON:0001890 ## cerebral hemisphere
+UBERON:0001954 ## central nervous system
+UBERON:0002102 ## head
+UBERON:0001769 ## cerebral cortex
+UBERON:0002037 ## cerebellum
+UBERON:0001985 ## cranial nerve
+UBERON:0001988 ## spinal cord
+UBERON:0002240 ## spinal nerve
+UBERON:0002301 ## main axon
+UBERON:0002303 ## axon
+UBERON:0009835 ## neuron
+UBERON:0004657 ## neural tissue
+UBERON:0001013 ## adipose tissue
+UBERON:0002495 ## neural lobe
 

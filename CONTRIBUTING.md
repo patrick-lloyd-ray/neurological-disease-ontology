@@ -70,17 +70,30 @@ For how to write a good term request, please read the [best practices carefully]
 
 ### How to add a new term
 
-If you have never editted this ontology before, first follow a [general tutorial](https://oboacademy.github.io/obook/lesson/contributing-to-obo-ontologies)
+If you have never edited this ontology before, first follow a [general tutorial](https://oboacademy.github.io/obook/lesson/contributing-to-obo-ontologies) and the [OBO Academy Protege tutorial](https://go-protege-tutorial.readthedocs.io/en/latest/).
 
 **Process**:
 
-1. Clone the repository (In case you are not an offical team member, create a fork first)
-1. Create new branch in git, for example `git checkout -b issue123`
-1. Open src/ontology/nd-edit.owl in your favourite editor, i.e. [Protege](https://protege.stanford.edu/). **Careful:** double check you are editing the correct file. There are many ontology files in this repository, but only one _editors file_!
-1. Perform your edit and save your changes
-1. Commit changes to branch
-1. Push changes upstream
-1. Create pull request
+1. Clone the repository (if you're not an official team member, create a fork first)
+1. Create a new branch in git, for example `git checkout -b issue123`
+1. Open `src/ontology/nd-edit.owl` in [Protege](https://protege.stanford.edu/). **Important:** Always edit the editors file (`nd-edit.owl`). There are many ontology files in this repository, but only one _editors file_!
+1. Before making changes, ensure you have a unique ID range assigned (see [src/ontology/README-editors.md](src/ontology/README-editors.md#id-ranges))
+1. Perform your edits and save your changes
+1. Test your changes locally by running:
+   ```bash
+   cd src/ontology
+   make test
+   ```
+1. Commit changes to your branch with a descriptive message
+1. Push changes to your fork
+1. Create a pull request to the `main` branch
+1. Address any feedback from the maintainers and automated checks
+
+**Guidelines**:
+- Keep commits focused and descriptive
+- One term per commit when possible
+- Reference the issue number in commit messages (e.g., "Closes #123")
+- All pull requests should pass the CI/CD checks before merging
 
 ## Best Practices
 

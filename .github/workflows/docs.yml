@@ -1,4 +1,4 @@
-# Basic ODK workflow
+# Documentation deployment workflow
 name: Docs
 
 # Controls when the action will run. 
@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - master
       - main
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -15,8 +16,8 @@ jobs:
     name: Deploy docs
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Deploy docs
         uses: mhausenblas/mkdocs-deploy-gh-pages@master

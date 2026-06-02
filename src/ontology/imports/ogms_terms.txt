@@ -1,2 +1,7 @@
-OGMS:0000001 ## 
-
+OGMS:0000001 ## disease
+OGMS:0000016 ## diagnosis
+OGMS:0000018 ## treatment
+OGMS:0000019 ## role
+OGMS:0000020 ## clinical evaluation
+OGMS:0000067 ## diagnosis role
+OGMS:0000068 ## disease role

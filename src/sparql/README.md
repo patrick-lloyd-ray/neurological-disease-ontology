@@ -1,32 +1,47 @@
-# Sparql checks
+# SPARQL Queries
 
-[SPARQL](https://www.w3.org/TR/rdf-sparql-query/) is a W3C standard
-query language for RDF. This directory contains useful SPARQL queries
-for perfoming over the ontology.
+[SPARQL](https://www.w3.org/TR/rdf-sparql-query/) is a W3C standard query language for RDF. This directory contains useful SPARQL queries for validating and reporting on the Neurological Disease Ontology.
 
-SPARQL can be executed on a triplestore or directly on any OWL
-file. The queries here are all executed on either nd-edit.obo or
-downstream products in the [ontology](../ontology/) folder. We use
-`robot` as this allows easy execution over any Obo-format or OWL file.
+SPARQL queries are executed on the ontology files using [ROBOT](http://robot.obolibrary.org/), which allows easy execution over any OBO-format or OWL file. The queries run against both `nd-edit.owl` and downstream products.
 
-We break the queries into 3 categories:
+## Query Types
 
-## Constraint Violation checks
+### Constraint Violation Checks
 
-These are all named `*violation.sparql`. A subset of these are
-configured to be executed via travis. If these return any results,
-then the build will fail.
+These files are named `*violation.sparql`. A subset of these are configured in the Makefile and executed via the GitHub Actions CI/CD pipeline (`make test`). If any violation queries return results, the build will fail.
 
-Consult the individual sparql files to see the intent of the check
+Common violations checked:
+- `owldef-self-reference-violation.sparql` - Detects circular definitions
+- `iri-range-violation.sparql` - Validates IRI ranges
+- `label-with-iri-violation.sparql` - Checks for malformed labels
+- `multiple-replaced_by-violation.sparql` - Ensures proper term deprecation
+- `dc-properties-violation.sparql` - Validates Dublin Core properties
 
-## Construct queries
+### Construct Queries
 
-These are named `construct*.sparql`, and always have the form `CONSTRUCT ...`.
+These files are named `construct*.sparql` and use the SPARQL `CONSTRUCT` clause. They generate new OWL axioms that can be inserted back into the ontology for automated enrichment.
 
-These are used to generate new OWL axioms that can be inserted back
-into the ontology.
+### Report Queries
 
-## Reports
+The remaining SPARQL queries are for informative purposes, generating useful reports about the ontology:
+- `basic-report.sparql` - Overall ontology statistics
+- `class-count-by-prefix.sparql` - Term counts by namespace
+- `edges.sparql` - Relationship report
+- `xrefs.sparql` - Cross-reference report
+- `obsoletes.sparql` - Deprecated terms report
+- `synonyms.sparql` - Synonym listing
 
-The remaining SPARQL queries are for informative purposes. A subset
-may be executed with each release.
+## Running SPARQL Checks
+
+SPARQL validation runs automatically as part of the build process:
+
+```bash
+cd ../ontology
+make test
+```
+
+Or run validation on a specific file:
+
+```bash
+robot query --input nd-edit.owl --select ../sparql/owldef-self-reference-violation.sparql
+```

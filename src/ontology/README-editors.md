@@ -56,48 +56,71 @@ For now, consult the [GO Tutorial on configuring Protege](http://go-protege-tuto
 
 ## Imports
 
-All import modules are in the [imports/](imports/) folder.
+All import modules are in the [imports/](imports/) folder. The ODK automatically manages imports based on configurations in [../metadata/nd.yml](../metadata/nd.yml) and term lists in each `*_terms.txt` file.
 
-There are two ways to include new classes in an import module
+### Adding terms from external ontologies
 
- 1. Reference an external ontology class in the edit ontology. In Protege: "add new entity", then paste in the PURL
- 2. Add to the imports/ont_terms.txt file, for example imports/go_terms.txt
+There are two ways to include new classes in an import module:
 
-After doing this, you can run
+ 1. **Reference directly in Protege**: In Protege, use "add new entity" and paste in the PURL of an external ontology class
+ 2. **Add to term list**: Edit the appropriate `imports/*_terms.txt` file (e.g., `imports/uberon_terms.txt` for anatomical structures)
 
-`./run.sh make all_imports`
+Current imports configured:
+ - **BFO**: Basic Formal Ontology (top-level entities)
+ - **OBI**: Ontology for Biomedical Investigations
+ - **PR**: PRotein Ontology
+ - **RO**: Relationship Ontology
+ - **UBERON**: Anatomical entities
+ - **OGMS**: Ontology of General Medical Science
 
-to regenerate imports.
+After modifying term lists, run the build command to regenerate imports:
 
-Note: the ont_terms.txt file may include 'starter' classes seeded from
-the ontology starter kit. It is safe to remove these.
+```bash
+make all_imports
+```
+
+Or run the full ODK pipeline:
+
+```bash
+make all
+```
+
+Note: The `*_terms.txt` files may include starter classes from the ontology development kit. It is safe to modify or remove these as needed.
+
+## Building the ontology
+
+The ODK uses a Makefile to manage the build process. Key commands:
+
+### Development builds
+
+```bash
+# Generate all derived products (OWL, OBO, JSON formats)
+make all
+
+# Run quality control checks (SPARQL validation, import validation)
+make test
+
+# View all available Makefile targets
+make help
+```
 
 ## Release Manager notes
 
-You should only attempt to make a release AFTER the edit version is
-committed and pushed, AND the travis build passes.
+Releases should only be made AFTER:
+1. The edit version (nd-edit.owl) is committed and pushed
+2. All CI checks pass (GitHub Actions workflow)
+3. Release artifacts have been tested locally
 
-These instructions assume you have
-[docker](https://www.docker.com/get-docker). This folder has a script
-[run.sh](run.sh) that wraps docker commands.
+The build process is managed through the Makefile and GitHub Actions CI/CD pipeline.
 
-to release:
+To prepare a release:
 
-first type
+```bash
+cd src/ontology
+make prepare_release
+```
 
-    git branch
-
-to make sure you are on master
-
-    cd src/ontology
-    sh run.sh make all
-
-If this looks good type:
-
-    sh run.sh make prepare_release
-
-This generates derived files such as nd.owl and nd.obo and places
-them in the top level (../..).
+This generates derived files such as nd.owl, nd.obo, and nd.json in multiple formats (base, full, simple) and places them in the top-level directory.
 
 Note that the versionIRI value automatically will be added, and will
 end with YYYY-MM-DD, as per OBO guidelines.
