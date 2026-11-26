@@ -1,9 +1,11 @@
 id: nd
 title: "Neurological Disease Ontology"
+description: "The Neurological Disease Ontology (ND) provides a set of logically connected classes that represent the range of neurological diseases and their associated signs and symptoms, assessments, diagnoses, and interventions encountered in the course of clinical practice. ND is built as an extension of the Ontology for General Medical Sciences (OGMS)."
+license: "https://creativecommons.org/licenses/by/4.0/"
 github_org: addiehl
-git_main_branch: main
+git_main_branch: master
 repo: neurological-disease-ontology
-release_artefacts: 
+release_artefacts:
   - base
   - full
   - simple
@@ -14,10 +16,16 @@ export_formats:
   - json
 import_group:
   products:
-    - id: bfo 
+    - id: bfo
+    - id: fma
+      is_large: true
+    - id: iao
+    - id: ncbitaxon
+      mirror_from: http://purl.obolibrary.org/obo/ncbitaxon/subsets/taxslim.owl
     - id: obi
     - id: ogms
     - id: pr
+      is_large: true
     - id: ro
     - id: uberon
 robot_java_args: '-Xmx16G'
