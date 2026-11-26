@@ -1237,7 +1237,7 @@ AnnotationAssertion(obo:IAO_0000118 obo:ND_0000010 "HIV-related dementia")
 AnnotationAssertion(obo:IAO_0000119 obo:ND_0000010 "http://neurolex.org/wiki/Category:Neurological_Complications_of_AIDS")
 AnnotationAssertion(rdfs:comment obo:ND_0000010 "change label to 'HIV related dementia'")
 AnnotationAssertion(rdfs:label obo:ND_0000010 "HIV related dementia")
-EquivalentClasses(obo:ND_0000010 ObjectIntersectionOf(obo:ND_0000180 ObjectSomeValuesFrom(obo:ND_0004000 obo:ND_0003000)))
+SubClassOf(obo:ND_0000010 obo:ND_0000009)
 SubClassOf(obo:ND_0000010 obo:ND_0000180)
 
 # Class: obo:ND_0000011 (dementia associated with Huntingtons disease)
@@ -3153,7 +3153,7 @@ AnnotationAssertion(obo:IAO_0000115 obo:ND_0000158 "a slow progressive, destruct
 AnnotationAssertion(obo:IAO_0000117 obo:ND_0000158 "Alexander P. Cox")
 AnnotationAssertion(obo:IAO_0000119 obo:ND_0000158 "http://alzheimers.about.com/od/typesofdementia/a/neurosyphilis.htm")
 AnnotationAssertion(rdfs:label obo:ND_0000158 "dementia caused by syphilis")
-EquivalentClasses(obo:ND_0000158 ObjectIntersectionOf(obo:ND_0000180 ObjectSomeValuesFrom(obo:ND_0004000 obo:ND_0003000)))
+SubClassOf(obo:ND_0000158 obo:ND_0000009)
 SubClassOf(obo:ND_0000158 obo:ND_0000180)
 
 # Class: obo:ND_0000159 (neurodegenerative disease resulting in dementia)
